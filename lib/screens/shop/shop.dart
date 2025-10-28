@@ -1,0 +1,18 @@
+import 'package:flutter/material.dart';
+import 'package:telkomsel_app/themes.dart';
+
+class ShopPage extends StatefulWidget {
+  const ShopPage({super.key});
+
+  @override
+  State<ShopPage> createState() => _ShopPageState();
+}
+
+class _ShopPageState extends State<ShopPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text('Shop Page', style: mediumText15)),
+    );
+  }
+}
