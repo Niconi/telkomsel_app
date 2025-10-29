@@ -1,4 +1,8 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/flutter_percent_indicator.dart';
+import 'package:telkomsel_app/screens/home/components/card_info_home_1.dart';
+import 'package:telkomsel_app/screens/home/components/card_info_home_2.dart';
 import 'package:telkomsel_app/themes.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List cards = [CardInfoHome(), CardInfoHome2()];
   @override
   Widget build(BuildContext context) {
     Widget headerContent(String icon, String text) {
@@ -27,6 +32,23 @@ class _HomePageState extends State<HomePage> {
             Icon(Icons.chevron_right_rounded, color: whiteColor),
           ],
         ),
+      );
+    }
+
+    Widget cardInfo() {
+      return Column(
+        children: [
+          CarouselSlider(
+            items: cards.map<Widget>((card) => Container(child: card)).toList(),
+            options: CarouselOptions(
+              height: 333,
+              enlargeCenterPage: true,
+              enableInfiniteScroll: false,
+              initialPage: 0,
+              viewportFraction: 0.9,
+            ),
+          ),
+        ],
       );
     }
 
@@ -79,7 +101,7 @@ class _HomePageState extends State<HomePage> {
             stops: [0.1, 0.8, 1.0],
           ),
         ),
-        child: ListView(children: [header()]),
+        child: ListView(children: [header(), cardInfo()]),
       ),
     );
   }
